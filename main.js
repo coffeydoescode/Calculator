@@ -1,3 +1,5 @@
+// Operator Functions
+
 function add(numb1, numb2) {
   return numb1 + numb2;
 }
@@ -21,3 +23,9 @@ function divide(numb1, numb2) {
 }
 
 console.log(divide(50, 10));
+
+function operate(operator, numb1, numb2) {
+  return operator(numb1, numb2);
+}
+
+console.log(operate(subtract, 5, 3));
