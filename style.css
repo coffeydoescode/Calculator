@@ -1,0 +1,18 @@
+.calculator {
+  background-color: cadetblue;
+  width: 350px;
+  min-height: 400px;
+}
+.display {
+  background-color: lightgrey;
+  width: 200px;
+  min-height: 70px;
+}
+.input {
+  display: flex;
+  flex-direction: row;
+
+  background-color: white;
+  width: 200px;
+  height: 100px;
+}
