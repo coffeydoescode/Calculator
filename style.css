@@ -1,3 +1,6 @@
+.show {
+  outline: red solid 1px;
+}
 main {
   background-color: #d4d4d2;
   display: flex;
@@ -16,13 +19,7 @@ main {
   flex-wrap: wrap;
   border-radius: 20px;
 }
-.display {
-  background-color: #505050;
-  width: 90%;
-  min-height: 70px;
-  margin: 4%;
-  border-radius: 10px;
-}
+
 .input {
   background-color: #587792;
   width: 90%;
@@ -30,6 +27,29 @@ main {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
+}
+.display {
+  background-color: #505050;
+  min-height: 70px;
+  margin: 15px;
+  border-radius: 10px;
+}
+.keypadContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.keypad1 {
+  background-color: lightskyblue;
+  margin-left: 15px;
+  height: 100%;
+  width: 90%;
+}
+.keypad2 {
+  background-color: tomato;
+  margin-right: 15px;
+  height: 100%;
+  width: 65px;
 }
