@@ -117,6 +117,9 @@ footer {
   min-height: 70px;
   margin: 15px;
   border-radius: 10px;
+  font-size: 55px;
+  text-align: right;
+  padding-right: 5px;
 }
 .keypadContainer {
   display: flex;
@@ -157,6 +160,7 @@ footer {
 }
 
 .number-btn {
+  font-size: 24px;
   font-weight: 600;
 }
 
