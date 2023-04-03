@@ -29,3 +29,9 @@ function operate(operator, numb1, numb2) {
 }
 
 console.log(operate(subtract, 5, 3));
+
+let firstNumb;
+
+let mathOperator;
+
+let secondNumb;
