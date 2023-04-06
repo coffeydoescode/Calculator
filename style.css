@@ -112,7 +112,7 @@ footer {
   display: flex;
   flex-direction: column;
 }
-.display {
+#display {
   background-color: #d4d4d2;
   min-height: 70px;
   margin: 15px;
