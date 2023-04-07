@@ -28,7 +28,18 @@ let secondNumb;
 
 const display = document.getElementById("display");
 
-console.log(display);
-
 let displayValue = display.textContent;
-console.log(displayValue);
+
+const numberButtons = Array.from(document.getElementsByClassName("numbBtn"));
+
+console.log(numberButtons);
+
+function logIt(event) {
+  console.log(event.target);
+}
+
+// numberButtons[9].addEventListener("click", logIt);
+
+numberButtons.forEach(function (button) {
+  button.addEventListener("click", logIt);
+});
