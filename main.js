@@ -35,10 +35,8 @@ const numberButtons = Array.from(document.getElementsByClassName("numbBtn"));
 console.log(numberButtons);
 
 function logIt(event) {
-  console.log(event.target);
+  console.log(event.target.innerText);
 }
-
-// numberButtons[9].addEventListener("click", logIt);
 
 numberButtons.forEach(function (button) {
   button.addEventListener("click", logIt);
