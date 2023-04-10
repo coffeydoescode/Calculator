@@ -32,12 +32,22 @@ let displayValue = display.textContent;
 
 const numberButtons = Array.from(document.getElementsByClassName("numbBtn"));
 
-console.log(numberButtons);
+// console.log(numberButtons);
 
-function logIt(event) {
-  console.log(event.target.innerText);
-}
+const getNumber = function logIt(event) {
+  currentDisplay = display.textContent;
+  numberClicked = event.target.innerText;
+  display.textContent = numberClicked;
+  display.textContent = `${currentDisplay}${numberClicked}`;
+};
+// Number Button event handler
 
 numberButtons.forEach(function (button) {
-  button.addEventListener("click", logIt);
+  button.addEventListener("click", getNumber);
 });
+// Number Button Event
+
+// function updateDisplay() {
+//   currentDisplay = display.textContent;
+//   display.textContent = `${currentDisplay}${getNumber()}`;
+// }
