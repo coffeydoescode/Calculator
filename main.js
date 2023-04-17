@@ -26,25 +26,36 @@ let operator;
 
 let secondNumb;
 
+let numbClickCount = 0;
+
 const display = document.getElementById("display");
 
-let displayValue = display.textContent;
+const numberBtns = Array.from(document.getElementsByClassName("numbBtn"));
 
-const numberButtons = Array.from(document.getElementsByClassName("numbBtn"));
+const operatorBtns = Array.from(document.getElementsByClassName("operatorBtn"));
 
 const getNumber = (event) => {
   currentDisplay = display.textContent;
 
   numberClicked = event.target.textContent;
 
-  if (display.textContent == "0") {
+  if (currentDisplay == "0") {
     currentDisplay = "";
   }
   display.textContent = `${currentDisplay}${numberClicked}`;
+  killNumbers();
+  return numbClickCount++;
 };
 // Number Button event handler
 
-numberButtons.forEach(function (button) {
+function killNumbers() {
+  if (numbClickCount === 7) {
+    numberBtns.forEach(function (button) {
+      button.removeEventListener("click", getNumber);
+    });
+  }
+}
+
+numberBtns.forEach(function (button) {
   button.addEventListener("click", getNumber);
 });
-// Number Button Event
