@@ -24,6 +24,8 @@ let firstNumb;
 
 let operator;
 
+let operatorLabel;
+
 let secondNumb;
 
 let numbClickCount = 0;
@@ -34,19 +36,31 @@ const numberBtns = Array.from(document.getElementsByClassName("numbBtn"));
 
 const operatorBtns = Array.from(document.getElementsByClassName("operatorBtn"));
 
+const allClearBtn = document.querySelector(".AC");
+
+const plusBtn = document.querySelector(".add");
+
+// function cleanDisplay() {
+//   display.textContent = "0";
+//   numbClickCount = 0;
+//   console.log(numbClickCount);
+// }
+
 const getNumber = (event) => {
-  currentDisplay = display.textContent;
+  console.log(numbClickCount);
 
   numberClicked = event.target.textContent;
 
-  if (currentDisplay == "0") {
+  currentDisplay = display.textContent;
+
+  if (display.textContent === "0") {
     currentDisplay = "";
   }
   display.textContent = `${currentDisplay}${numberClicked}`;
   killNumbers();
   return numbClickCount++;
 };
-// Number Button event handler
+// Number Button Event Handler
 
 function killNumbers() {
   if (numbClickCount === 7) {
@@ -59,3 +73,20 @@ function killNumbers() {
 numberBtns.forEach(function (button) {
   button.addEventListener("click", getNumber);
 });
+
+// capture number in display and save to firstNumb
+// capture the operator and save to operator
+// clear input for next number
+
+const getOperator = (event) => {
+  firstNumb = display.textContent;
+  operatorLabel = event.currentTarget.classList[0];
+  console.log(firstNumb);
+  console.log(operatorLabel);
+};
+
+operatorBtns.forEach(function (button) {
+  button.addEventListener("click", getOperator);
+});
+
+// Build Function to check operator label and choose operator
