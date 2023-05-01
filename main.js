@@ -56,6 +56,9 @@ const getNumber = (event) => {
   if (display.textContent === "0") {
     currentDisplay = "";
   }
+  if (firstNumb != null && numbClickCount == 0) {
+    currentDisplay = "";
+  }
   display.textContent = `${currentDisplay}${numberClicked}`;
   killNumbers();
   return numbClickCount++;
@@ -83,10 +86,9 @@ const getOperator = (event) => {
   operatorLabel = event.currentTarget.classList[0];
   console.log(firstNumb);
   console.log(operatorLabel);
+  numbClickCount = 0;
 };
 
 operatorBtns.forEach(function (button) {
   button.addEventListener("click", getOperator);
 });
-
-// Build Function to check operator label and choose operator
