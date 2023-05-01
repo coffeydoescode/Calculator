@@ -1,24 +1,26 @@
 // Operator Functions
 
-function add(numb1, numb2) {
-  return numb1 + numb2;
+function add(firstNumb, secondNumb) {
+  return firstNumb + secondNumb;
 }
 
-function subtract(numb1, numb2) {
-  return numb1 - numb2;
+function subtract(firstNumb, secondNumb) {
+  return firstNumb - secondNumb;
 }
 
-function multiply(numb1, numb2) {
-  return numb1 * numb2;
+function multiply(firstNumb, secondNumb) {
+  return firstNumb * secondNumb;
 }
 
-function divide(numb1, numb2) {
-  return numb1 / numb2;
+function divide(firstNumb, secondNumb) {
+  return firstNumb / secondNumb;
 }
 
-function operate(operator, numb1, numb2) {
-  return operator(numb1, numb2);
+function operate(operator, firstNumb, secondNumb) {
+  return operator(firstNumb, secondNumb);
 }
+
+// console.log(operate(add, 1, 2));
 
 let firstNumb;
 
@@ -38,13 +40,7 @@ const operatorBtns = Array.from(document.getElementsByClassName("operatorBtn"));
 
 const allClearBtn = document.querySelector(".AC");
 
-const plusBtn = document.querySelector(".add");
-
-// function cleanDisplay() {
-//   display.textContent = "0";
-//   numbClickCount = 0;
-//   console.log(numbClickCount);
-// }
+const equalsBtn = document.querySelector(".equals");
 
 const getNumber = (event) => {
   console.log(numbClickCount);
@@ -77,10 +73,6 @@ numberBtns.forEach(function (button) {
   button.addEventListener("click", getNumber);
 });
 
-// capture number in display and save to firstNumb
-// capture the operator and save to operator
-// clear input for next number
-
 const getOperator = (event) => {
   firstNumb = display.textContent;
   operatorLabel = event.currentTarget.classList[0];
@@ -92,3 +84,21 @@ const getOperator = (event) => {
 operatorBtns.forEach(function (button) {
   button.addEventListener("click", getOperator);
 });
+
+equalsBtn.addEventListener("click", calculate);
+
+function calculate() {
+  secondNumb = display.textContent;
+  if (operatorLabel == "add") {
+    operator = add;
+  } else if (operatorLabel == "subtract") {
+    operator = subtract;
+  } else if (operatorLabel == "divide") {
+    operator = divide;
+  } else if (operatorLabel == "multiply") {
+    operator = multiply;
+  }
+  // console.log(operatorLabel, operator);
+  let answer = operate(operator, firstNumb, secondNumb);
+  display.textContent = answer;
+}
