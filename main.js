@@ -47,11 +47,14 @@ const clear = document.querySelector(".AC");
 const backspace = document.querySelector(".backspace");
 
 function deleteDigit() {
+  numbClickCount = numbClickCount - 1;
   let currentNumb = Array.from(display.textContent);
   console.log(currentNumb);
   currentNumb.pop();
   let newNumb = currentNumb.join("");
   display.textContent = newNumb;
+  console.log(numbClickCount);
+  activateNumbers();
 }
 
 backspace.addEventListener("click", deleteDigit);
@@ -59,12 +62,17 @@ backspace.addEventListener("click", deleteDigit);
 function clearDisplay() {
   display.textContent = "0";
   numbClickCount = 0;
+  console.log(numbClickCount);
+  activateNumbers();
 }
 
 clear.addEventListener("click", clearDisplay);
 
 const getNumber = (event) => {
   console.log(numbClickCount);
+
+  numbClickCount + 1;
+
   numberClicked = event.target.textContent;
 
   currentDisplay = display.textContent;
@@ -77,21 +85,31 @@ const getNumber = (event) => {
   }
   display.textContent = `${currentDisplay}${numberClicked}`;
   killNumbers();
+
   return numbClickCount++;
 };
 // Number Button Event Handler
 
 function killNumbers() {
-  if (numbClickCount === 7) {
+  if (numbClickCount == 7) {
     numberBtns.forEach(function (button) {
       button.removeEventListener("click", getNumber);
     });
   }
 }
 
-numberBtns.forEach(function (button) {
-  button.addEventListener("click", getNumber);
-});
+// numberBtns.forEach(function (button) {
+//   button.addEventListener("click", getNumber);
+// });
+
+function activateNumbers() {
+  if (numbClickCount <= 7) {
+    numberBtns.forEach(function (button) {
+      button.addEventListener("click", getNumber);
+    });
+  }
+}
+activateNumbers();
 
 const getOperator = (event) => {
   firstNumb = display.textContent;
