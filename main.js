@@ -42,9 +42,16 @@ const allClearBtn = document.querySelector(".AC");
 
 const equalsBtn = document.querySelector(".equals");
 
-const getNumber = (event) => {
-  console.log(numbClickCount);
+const clear = document.querySelector(".AC");
 
+function clearDisplay() {
+  display.textContent = "";
+  numbClickCount = 0;
+}
+
+clear.addEventListener("click", clearDisplay);
+
+const getNumber = (event) => {
   numberClicked = event.target.textContent;
 
   currentDisplay = display.textContent;
