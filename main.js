@@ -44,14 +44,27 @@ const equalsBtn = document.querySelector(".equals");
 
 const clear = document.querySelector(".AC");
 
+const backspace = document.querySelector(".backspace");
+
+function deleteDigit() {
+  let currentNumb = Array.from(display.textContent);
+  console.log(currentNumb);
+  currentNumb.pop();
+  let newNumb = currentNumb.join("");
+  display.textContent = newNumb;
+}
+
+backspace.addEventListener("click", deleteDigit);
+
 function clearDisplay() {
-  display.textContent = "";
+  display.textContent = "0";
   numbClickCount = 0;
 }
 
 clear.addEventListener("click", clearDisplay);
 
 const getNumber = (event) => {
+  console.log(numbClickCount);
   numberClicked = event.target.textContent;
 
   currentDisplay = display.textContent;
