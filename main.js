@@ -1,7 +1,7 @@
 // Operator Functions
 
 function add(firstNumb, secondNumb) {
-  return firstNumb + secondNumb;
+  return Number(firstNumb) + Number(secondNumb);
 }
 
 function subtract(firstNumb, secondNumb) {
@@ -19,8 +19,6 @@ function divide(firstNumb, secondNumb) {
 function operate(operator, firstNumb, secondNumb) {
   return operator(firstNumb, secondNumb);
 }
-
-// console.log(operate(add, 1, 2));
 
 let firstNumb;
 
@@ -112,7 +110,7 @@ function activateNumbers() {
 activateNumbers();
 
 const getOperator = (event) => {
-  firstNumb = display.textContent;
+  firstNumb = Number(display.textContent);
   operatorLabel = event.currentTarget.classList[0];
   console.log(firstNumb);
   console.log(operatorLabel);
@@ -136,7 +134,7 @@ function calculate() {
   } else if (operatorLabel == "multiply") {
     operator = multiply;
   }
-  // console.log(operatorLabel, operator);
+  console.log(operatorLabel, operator);
   let answer = operate(operator, firstNumb, secondNumb);
   display.textContent = answer;
 }
