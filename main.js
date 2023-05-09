@@ -28,7 +28,11 @@ let operatorLabel;
 
 let secondNumb;
 
+let answer;
+
 let numbClickCount = 0;
+
+let solved;
 
 const display = document.getElementById("display");
 
@@ -66,7 +70,17 @@ function clearDisplay() {
 
 clear.addEventListener("click", clearDisplay);
 
+function solveCheck() {
+  if (solved == true) {
+    solved = false;
+
+    clearDisplay();
+  }
+}
+// This prevents concatenation of strings in display after evaluating a problem
+
 const getNumber = (event) => {
+  solveCheck();
   console.log(numbClickCount);
 
   numbClickCount + 1;
@@ -95,10 +109,6 @@ function killNumbers() {
     });
   }
 }
-
-// numberBtns.forEach(function (button) {
-//   button.addEventListener("click", getNumber);
-// });
 
 function activateNumbers() {
   if (numbClickCount <= 7) {
@@ -135,6 +145,8 @@ function calculate() {
     operator = multiply;
   }
   console.log(operatorLabel, operator);
-  let answer = operate(operator, firstNumb, secondNumb);
+  answer = operate(operator, firstNumb, secondNumb);
   display.textContent = answer;
+
+  solved = true;
 }
