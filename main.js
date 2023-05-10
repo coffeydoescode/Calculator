@@ -20,6 +20,8 @@ function operate(operator, firstNumb, secondNumb) {
   return operator(firstNumb, secondNumb);
 }
 
+// Global Variables
+
 let firstNumb;
 
 let operator;
@@ -53,11 +55,9 @@ const backspace = document.querySelector(".backspace");
 function deleteDigit() {
   numbClickCount = numbClickCount - 1;
   let currentNumb = Array.from(display.textContent);
-  console.log(currentNumb);
   currentNumb.pop();
   let newNumb = currentNumb.join("");
   display.textContent = newNumb;
-  console.log(numbClickCount);
   activateNumbers();
 }
 
@@ -65,7 +65,6 @@ backspace.addEventListener("click", deleteDigit);
 
 function clearDisplay() {
   display.textContent = "0";
-  console.log("CLEARED");
   firstNumb = null;
   secondNumb = null;
   activateNumbers();
@@ -76,16 +75,12 @@ clear.addEventListener("click", clearDisplay);
 function solveCheck() {
   if (solved == true) {
     solved = false;
-
-    // clearDisplay();
   }
 }
 // This prevents concatenation of strings in display after evaluating a problem
 
 const getNumber = (event) => {
   solveCheck();
-  // console.log(numbClickCount);
-
   numbClickCount + 1;
 
   numberClicked = event.target.textContent;
@@ -122,20 +117,8 @@ function activateNumbers() {
 }
 activateNumbers();
 
-// function numberCheck() {
-//   if (firstNumb == null) {
-//     firstNumb = display.textContent;
-//     console.log(firstNumb);
-//   } else if (firstNumb != null) {
-//     secondNumb = display.textContent;
-//     console.log(secondNumb);
-//   }
-// }
-
 const getOperator = (event) => {
   operatorCount += 1;
-  console.log(`Operator Count: ${operatorCount}`);
-
   if (firstNumb != null) {
     secondNumb = display.textContent;
     calculate();
@@ -143,8 +126,6 @@ const getOperator = (event) => {
 
   firstNumb = display.textContent;
   operatorLabel = event.currentTarget.classList[0];
-  console.log(firstNumb);
-  console.log(operatorLabel);
   numbClickCount = 0;
   solving();
 };
@@ -174,12 +155,10 @@ function calculate() {
   } else if (operatorLabel == "multiply") {
     operator = multiply;
   }
-  console.log(operatorLabel, operator);
   answer = operate(operator, firstNumb, secondNumb);
   display.textContent = answer;
   firstNumb = null;
   secondNumb = null;
-  // operatorCount = 0;
   solved = true;
   notSolving();
 }
