@@ -24,6 +24,8 @@ let firstNumb;
 
 let operator;
 
+let operatorCount = 0;
+
 let operatorLabel;
 
 let secondNumb;
@@ -63,8 +65,9 @@ backspace.addEventListener("click", deleteDigit);
 
 function clearDisplay() {
   display.textContent = "0";
-  numbClickCount = 0;
-  console.log(numbClickCount);
+  console.log("CLEARED");
+  firstNumb = null;
+  secondNumb = null;
   activateNumbers();
 }
 
@@ -74,14 +77,14 @@ function solveCheck() {
   if (solved == true) {
     solved = false;
 
-    clearDisplay();
+    // clearDisplay();
   }
 }
 // This prevents concatenation of strings in display after evaluating a problem
 
 const getNumber = (event) => {
   solveCheck();
-  console.log(numbClickCount);
+  // console.log(numbClickCount);
 
   numbClickCount + 1;
 
@@ -119,19 +122,46 @@ function activateNumbers() {
 }
 activateNumbers();
 
+// function numberCheck() {
+//   if (firstNumb == null) {
+//     firstNumb = display.textContent;
+//     console.log(firstNumb);
+//   } else if (firstNumb != null) {
+//     secondNumb = display.textContent;
+//     console.log(secondNumb);
+//   }
+// }
+
 const getOperator = (event) => {
-  firstNumb = Number(display.textContent);
+  operatorCount += 1;
+  console.log(`Operator Count: ${operatorCount}`);
+
+  if (firstNumb != null) {
+    secondNumb = display.textContent;
+    calculate();
+  }
+
+  firstNumb = display.textContent;
   operatorLabel = event.currentTarget.classList[0];
   console.log(firstNumb);
   console.log(operatorLabel);
   numbClickCount = 0;
+  solving();
 };
 
 operatorBtns.forEach(function (button) {
   button.addEventListener("click", getOperator);
 });
 
-equalsBtn.addEventListener("click", calculate);
+solving();
+
+function solving() {
+  equalsBtn.addEventListener("click", calculate);
+}
+
+function notSolving() {
+  equalsBtn.removeEventListener("click", calculate);
+}
 
 function calculate() {
   secondNumb = display.textContent;
@@ -147,6 +177,9 @@ function calculate() {
   console.log(operatorLabel, operator);
   answer = operate(operator, firstNumb, secondNumb);
   display.textContent = answer;
-
+  firstNumb = null;
+  secondNumb = null;
+  // operatorCount = 0;
   solved = true;
+  notSolving();
 }
