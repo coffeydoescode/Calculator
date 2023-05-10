@@ -74,6 +74,7 @@ clear.addEventListener("click", clearDisplay);
 
 function solveCheck() {
   if (solved == true) {
+    clearDisplay();
     solved = false;
   }
 }
@@ -118,6 +119,7 @@ function activateNumbers() {
 activateNumbers();
 
 const getOperator = (event) => {
+  solved = false;
   operatorCount += 1;
   if (firstNumb != null) {
     secondNumb = display.textContent;
@@ -156,6 +158,7 @@ function calculate() {
     operator = multiply;
   }
   answer = operate(operator, firstNumb, secondNumb);
+  console.log(typeof answer);
   display.textContent = answer;
   firstNumb = null;
   secondNumb = null;
