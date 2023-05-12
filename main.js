@@ -44,8 +44,6 @@ const numberBtns = Array.from(document.getElementsByClassName("numbBtn"));
 
 const operatorBtns = Array.from(document.getElementsByClassName("operatorBtn"));
 
-const allClearBtn = document.querySelector(".AC");
-
 const equalsBtn = document.querySelector(".equals");
 
 const clear = document.querySelector(".AC");
