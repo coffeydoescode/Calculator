@@ -145,6 +145,7 @@ function solving() {
 function notSolving() {
   equalsBtn.removeEventListener("click", calculate);
 }
+// Prevents equals button from being used after problem is solved
 
 function calculate() {
   secondNumb = display.textContent;
@@ -152,13 +153,18 @@ function calculate() {
     operator = add;
   } else if (operatorLabel == "subtract") {
     operator = subtract;
+  } else if (operatorLabel == "divide" && secondNumb == 0) {
+    firstNumb = null;
+    secondNumb = null;
+    solved = true;
+    notSolving();
+    return (answer = display.textContent = "NOPE");
   } else if (operatorLabel == "divide") {
     operator = divide;
   } else if (operatorLabel == "multiply") {
     operator = multiply;
   }
   answer = operate(operator, firstNumb, secondNumb);
-  console.log(typeof answer);
   display.textContent = answer;
   firstNumb = null;
   secondNumb = null;
