@@ -165,7 +165,7 @@ function calculate() {
     operator = multiply;
   }
   answer = operate(operator, firstNumb, secondNumb);
-  display.textContent = answer;
+  display.textContent = Math.round((answer + Number.EPSILON) * 100) / 100;
   firstNumb = null;
   secondNumb = null;
   solved = true;
