@@ -42,6 +42,8 @@ const display = document.getElementById("display");
 
 const numberBtns = Array.from(document.getElementsByClassName("numbBtn"));
 
+const decimal = document.querySelector(".decimal");
+
 const operatorBtns = Array.from(document.getElementsByClassName("operatorBtn"));
 
 const equalsBtn = document.querySelector(".equals");
