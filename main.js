@@ -74,7 +74,6 @@ clear.addEventListener("click", clearDisplay);
 
 function solveCheck() {
   if (solved == true) {
-    clearDisplay();
     solved = false;
   }
 }
