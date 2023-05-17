@@ -74,6 +74,7 @@ clear.addEventListener("click", clearDisplay);
 
 function solveCheck() {
   if (solved == true) {
+    display.textContent = "";
     solved = false;
   }
 }
@@ -122,6 +123,7 @@ function getOperator(event) {
   activateNumbers();
 
   solved = false;
+  // solveCheck();
   if (firstNumb != null) {
     secondNumb = display.textContent;
     calculate();
@@ -151,6 +153,10 @@ function notSolving() {
 // Prevents equals button from being used after problem is solved
 
 function calculate() {
+  if (secondNumb == undefined || secondNumb == null) {
+    secondNumb = 0;
+    notSolving();
+  }
   secondNumb = display.textContent;
   if (operatorLabel == "add") {
     operator = add;
