@@ -101,7 +101,7 @@ const getNumber = (event) => {
 // Number Button Event Handler
 
 function killNumbers() {
-  if (numbClickCount == 7) {
+  if (numbClickCount > 6) {
     numberBtns.forEach(function (button) {
       button.removeEventListener("click", getNumber);
     });
@@ -109,7 +109,7 @@ function killNumbers() {
 }
 
 function activateNumbers() {
-  if (numbClickCount <= 7) {
+  if (numbClickCount < 7) {
     numberBtns.forEach(function (button) {
       button.addEventListener("click", getNumber);
     });
@@ -117,19 +117,23 @@ function activateNumbers() {
 }
 activateNumbers();
 
-const getOperator = (event) => {
+function getOperator(event) {
+  numbClickCount = 0;
+  activateNumbers();
+
   solved = false;
-  operatorCount += 1;
   if (firstNumb != null) {
     secondNumb = display.textContent;
     calculate();
   }
+  // This if statement allows the operator to solve if used more than once
 
   firstNumb = display.textContent;
+  console.log(firstNumb);
+
   operatorLabel = event.currentTarget.classList[0];
-  numbClickCount = 0;
   solving();
-};
+}
 
 operatorBtns.forEach(function (button) {
   button.addEventListener("click", getOperator);
