@@ -67,6 +67,7 @@ function clearDisplay() {
   display.textContent = "0";
   firstNumb = null;
   secondNumb = null;
+  numbClickCount = 0;
   activateNumbers();
 }
 
