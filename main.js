@@ -22,13 +22,13 @@ function operate(operator, firstNumb, secondNumb) {
 
 // Global Variables
 
-let firstNumb;
+let firstNumb = null;
 
 let operator;
 
 let operatorCount = 0;
 
-let operatorLabel;
+let operatorLabel = null;
 
 let secondNumb;
 
@@ -81,22 +81,41 @@ function solveCheck() {
 }
 // This prevents concatenation of strings in display after evaluating a problem
 
+function operatorCheck() {
+  if (operatorLabel != null) {
+    return true;
+  } else {
+    return false;
+  }
+}
+// Checks if operator is defined
+
 const getNumber = (event) => {
   solveCheck();
   numbClickCount + 1;
 
   numberClicked = event.target.textContent;
+  // capture number from button clicked
 
   currentDisplay = display.textContent;
 
   if (display.textContent === "0") {
     currentDisplay = "";
   }
+  // removes 0 from display when a number is clicked
+
   if (firstNumb != null && numbClickCount == 0) {
     currentDisplay = "";
   }
+  // resets display for second number
+
   display.textContent = `${currentDisplay}${numberClicked}`;
-  killNumbers();
+  // displays number
+  if (firstNumb != null) {
+    operatorLabel = potentialOperatorLabel;
+    console.log("confirmed operator :", operatorLabel);
+  }
+  // confirms operator - operator is confirmed here so that the operator can be updated up until the second number is chosen
 
   return numbClickCount++;
 };
@@ -123,18 +142,25 @@ function getOperator(event) {
   numbClickCount = 0;
   activateNumbers();
 
-  solved = false;
-  // solveCheck();
-  if (firstNumb != null) {
-    secondNumb = display.textContent;
-    calculate();
+  if (solved == true) {
+    firstNumb = display.textContent;
   }
-  // This if statement allows the operator to solve if used more than once
 
-  firstNumb = display.textContent;
-  console.log(firstNumb);
+  if (firstNumb == null) {
+    firstNumb = display.textContent;
+    console.log(`First number = ${firstNumb}`);
+  }
 
-  operatorLabel = event.currentTarget.classList[0];
+  potentialOperatorLabel = event.currentTarget.classList[0];
+  // sets operator based on operator button used
+  console.log("potential operator: ", potentialOperatorLabel);
+
+  if (firstNumb != null && operatorCheck() == true) {
+    secondNumb = display.textContent;
+    firstNumb = calculate();
+    console.log(firstNumb);
+  }
+
   solving();
 }
 
@@ -154,11 +180,14 @@ function notSolving() {
 // Prevents equals button from being used after problem is solved
 
 function calculate() {
-  if (secondNumb == undefined || secondNumb == null) {
-    secondNumb = 0;
-    notSolving();
+  if (operatorLabel == null) {
+    solved = true;
+    return;
   }
+
   secondNumb = display.textContent;
+  console.log(`Second number = ${secondNumb}`);
+
   if (operatorLabel == "add") {
     operator = add;
   } else if (operatorLabel == "subtract") {
@@ -176,8 +205,11 @@ function calculate() {
   }
   answer = operate(operator, firstNumb, secondNumb);
   display.textContent = Math.round((answer + Number.EPSILON) * 100) / 100;
-  firstNumb = null;
+  roundedAnswer = display.textContent;
+  operatorLabel = null;
+  firstNumb = roundedAnswer;
   secondNumb = null;
   solved = true;
   notSolving();
+  return roundedAnswer;
 }
